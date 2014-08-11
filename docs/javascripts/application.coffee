@@ -60,28 +60,19 @@ class ExampleLoader
     templates = {}
     scripts = []
 
-    files.forEach (file) ->
-      parts = file.name.split('.')
-      name = parts[0]
-      extension = parts[1]
-
-      if extension == 'hbs'
-        if (name.substr(0, 10) == "templates/")
-          name = name.substr(10)
-          file.name = name + '.' + extension
-        templates[name] = Ember.Handlebars.compile(file.contents)
-      else if (extension == 'js')
-        scripts.push(file.contents)
-
     App = Ember.Application.create
       rootElement: element
       Resolver: Ember.DefaultResolver.extend(
         resolveTemplate: (obj) ->
-          return templates[obj.name]
+          templates[obj.name]
       )
 
     App.Router.reopen
       location: 'none'
 
-    scripts.forEach (script) ->
-      eval(script)
+    for file in files when file.name.match(/\.js$/)
+      eval(file.contents)
+
+    for file in files when file.name.match(/\.hbs$/)
+      name = file.name.replace(/^templates\//, "").replace(/\.hbs$/, "")
+      templates[name] = Ember.Handlebars.compile(file.contents)

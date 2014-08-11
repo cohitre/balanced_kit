@@ -1,4 +1,4 @@
-module Views from "balanced/views/base";
+module Views from "balanced/views/index";
 
 var BalancedKit = {
   Views: Views

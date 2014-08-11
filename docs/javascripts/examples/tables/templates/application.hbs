@@ -1,0 +1,33 @@
+<form {{action "addCustomer" name total on="submit"}}>
+  <div>
+    <label>
+      Customer name {{input type="text" value=name}}
+    </label>
+  </div>
+  <div>
+    <label>
+      Total {{input type="text" value=total}}
+    </label>
+  </div>
+  <div>
+    <button>Create</button>
+  </div>
+</form>
+
+{{#view "sample_table" purchases=purchases}}
+  <tbody>
+    {{#each purchase in purchases}}
+      <tr>
+        <td>{{purchase.createdAt}}</td>
+        <td>{{purchase.customerName}}</td>
+        <td>{{purchase.total}}</td>
+      </tr>
+    {{else}}
+      <tr>
+        <td {{bind-attr colspan=view.theadRowView.length}}>
+          Empty
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+{{/view}}
