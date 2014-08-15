@@ -6,7 +6,6 @@ var wrapFiles = require('broccoli-wrap');
 var findBowerTrees = require('broccoli-bower');
 var filterTemplates = require('broccoli-template')
 
-
 function preprocess (tree) {
   tree = filterTemplates(tree, {
     extensions: ['hbs', 'handlebars'],
@@ -18,6 +17,7 @@ function preprocess (tree) {
   return tree;
 }
 
+var bowerTrees = mergeTrees(findBowerTrees());
 
 var vendorSourceTree = "vendor";
 vendorSourceTree= pickFiles(vendorSourceTree, {
@@ -33,6 +33,7 @@ var balancedJsSourceTree = pickFiles("source", {
 balancedJsSourceTree = preprocess(balancedJsSourceTree);
 
 balancedJsSourceTree = mergeTrees([
+  bowerTrees,
   balancedJsSourceTree,
   vendorSourceTree
 ]);
