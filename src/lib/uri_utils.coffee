@@ -1,23 +1,28 @@
+isString = (obj) ->
+  (typeof obj == 'string') || (obj instanceof String)
+
 UriUtils =
-  build: (host, path, queryString) ->
-    root = host + path
-    if !_.isString(queryString)
+  build: (host, path, qs) ->
+    host + @buildPath(path, qs)
+
+  buildPath: (path, queryString) ->
+    if !isString(queryString)
       queryString = @objectToQueryString(queryString)
 
     if queryString
-      return root + "?" + queryString
-    return root
+      return path + "?" + queryString
+    return path
 
   serializeQueryStringPair: (key, value)  ->
     key = key.toString()
-    value = serializeQueryStringValue(value)
+    value = @serializeQueryStringValue(value)
     encodeURIComponent(key) + '=' + encodeURIComponent(value)
 
   serializeQueryStringValue: (value) ->
     if value?
-      return ""
-    else
       return value.toString()
+    else
+      return ""
 
   objectToQueryString: (object) ->
     result = for key, value of object

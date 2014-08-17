@@ -4,35 +4,42 @@ class BaseConnection
   settings: (settings) ->
     return settings
 
-  buildUrl: (path, queryString) ->
-    return UriUtils.build(@host, path, queryString)
-
-  del: (url) ->
-    this.ajax(url,
+  del: (path) ->
+    this.ajax(path,
       type: "DELETE"
     )
 
-  get: (url, queryString) ->
-    this.ajax(url,
+  get: (path) ->
+    this.ajax(path,
       type: "GET"
     )
 
-  post: (url, data) ->
-    this.ajax(url,
+  post: (path, data) ->
+    this.ajax(path,
       data: data,
       type: "POST"
     )
 
-  put: (url, data) ->
-    this.ajax(url,
+  put: (path, data) ->
+    this.ajax(path,
       data: data,
       type: "POST"
     )
 
   ajax: (path, settings) ->
-    url = @buildUrl(path)
+    url = UriUtils.build(@host, path)
     settings = @settings(settings)
     @constructor.ajax(url, settings)
+      .then (response) =>
+        @handleSuccessResponse(response)
+      .fail (response) =>
+        r = @handleErrorResponse(response)
+        $.Deferred().reject(r).promise()
+
+  handleSuccessResponse: (response) ->
+    response
+  handleErrorResponse: (response) ->
+    response
 
 BaseConnection.ajax = (url, settings) ->
   $.ajax(url, settings)

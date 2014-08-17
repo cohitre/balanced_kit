@@ -1,7 +1,15 @@
 `import BaseModel from "./base_model"`
 `import BalancedApiResponseHandler from "./balanced_api_response_handler"`
-`import BalancedApiConnection from "balanced/lib/connections/balanced_api_connection"`
 `import BankAccount from "./bank_account"`
+
+###
+    BalancedKit.marketplace("xxxxxxxxxxxxx")
+      .transaction(type, customer, funding_instrument, information)
+      .debit(customer, funding_instrument, information).save()
+      .debit(customer, funding_instrument, information).validate()
+      .customer().debit(funding_instrument, information)
+###
+
 
 # BalancedKit.Models.Marketplace
 #   .findByApiKey("xxxxxxxxx")

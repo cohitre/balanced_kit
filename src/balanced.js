@@ -1,8 +1,11 @@
+import BalancedApiService from "balanced/services/balanced_api_service";
 module Views from "balanced/views/index";
 module Models from "balanced/models/index";
-import BalancedApiConnection from "balanced/lib/connections/balanced_api_connection";
 
 var BalancedKit = {
+  service: function(secret) {
+    return BalancedApiService.forKey(secret);
+  },
   Views: Views,
   Models: Models,
   getMarketplace: function(secretKey) {
