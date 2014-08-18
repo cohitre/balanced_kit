@@ -9,9 +9,6 @@ class BaseCollectionLoader
 
   constructor: (@path) ->
 
-  attr: () ->
-    @queryStringAttributes
-
   start: ->
     @get(@path)
 

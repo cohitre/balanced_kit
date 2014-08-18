@@ -1,6 +1,9 @@
 `import UriUtils from "balanced/lib/uri_utils"`
 
 class BaseConnection
+  @ajax = (url, settings) ->
+    $.ajax(url, settings)
+
   settings: (settings) ->
     return settings
 
@@ -29,20 +32,19 @@ class BaseConnection
   ajax: (path, settings) ->
     url = UriUtils.build(@host, path)
     settings = @settings(settings)
-    @constructor.ajax(url, settings)
-      .then (response) =>
-        @handleSuccessResponse(response)
-      .fail (response) =>
-        r = @handleErrorResponse(response)
-        $.Deferred().reject(r).promise()
+
+    success = (response) =>
+      @handleSuccessResponse(response)
+    error = (response) =>
+      r = @handleErrorResponse(response)
+      $.Deferred().reject(r).promise()
+
+    @constructor.ajax(url, settings).then(success, error)
 
   handleSuccessResponse: (response) ->
     response
   handleErrorResponse: (response) ->
     response
-
-BaseConnection.ajax = (url, settings) ->
-  $.ajax(url, settings)
 
 `export { BaseConnection }`
 `export default BaseConnection`

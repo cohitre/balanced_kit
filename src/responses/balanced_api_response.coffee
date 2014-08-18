@@ -7,22 +7,31 @@ get = (name) ->
       @connection.get(uri)
 
 has = (name) ->
-  -> @getMeta()[name]
+  -> @hasMeta(name)
 
 class BalancedApiResponse extends BaseResponse
   setConnection: (@connection) ->
 
-  hasNext: has "next"
-  next: get "next"
+  hasMeta: (name) ->
+    if arguments.length == 0
+      !!@getMeta()
+    else
+      !!@getMeta(name)
 
+  getMeta: (name) ->
+    if arguments.length == 0
+      return @response.meta
+    else
+      return @response.meta?[name]
+
+  hasNext: has "next"
   hasPrev: has "previous"
+
+  next: get "next"
   prev: get "previous"
 
   first: get "first"
   last: get "last"
-
-  getMeta: ->
-    @response.meta
 
   getLinks: ->
     @response.links

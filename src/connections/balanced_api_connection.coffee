@@ -48,6 +48,6 @@ class BalancedApiConnection extends BaseConnection
     response
 
   handleErrorResponse: (response) ->
-    new BalancedApiErrorResponse(response)
+    (new BalancedApiErrorResponse(response)).getErrorsCollection()
 
 `export default BalancedApiConnection`

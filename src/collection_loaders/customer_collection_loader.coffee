@@ -9,4 +9,9 @@ class CustomerCollectionLoader extends BaseCollectionLoader
   create: (attributes) ->
     @post(@path, attributes)
 
+  start: ->
+    super()
+      .then (response) =>
+        @handleResponse(response)
+
 `export default CustomerCollectionLoader`

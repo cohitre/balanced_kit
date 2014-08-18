@@ -11,20 +11,24 @@ ERROR_RESPONSE =
         "request_id": "OHMxxxxxxxxxxxxxxxx"
       },
       {
-        "status": "Unauthorized",
-        "category_code": "authentication-required",
-        "description": "Another error message",
-        "status_code": 401,
-        "category_type": "permission",
-        "request_id": "OHMxxxxxxxxxxxxxxxx"
+        "status": "Bad Request",
+        "category_code": "request",
+        "additional": null,
+        "status_code": 400,
+        "category_type": "request",
+        "extras": {
+          "email": "\"Jimmy Error\" must be a valid email address as specified by RFC-2822"
+        },
+        "request_id": "OHMxxxxxxxxxxxxxxxx",
+        "description": "Invalid field [email] - \"Jimmy Error\" must be a valid email address as specified by RFC-2822."
       }
     ]
 
 describe "BalancedApiErrorResponse", ->
-  describe "#getErrorMessages", ->
-    it "should return a list of errors", ->
+  describe "#getErrorsCollection", ->
+    it "should return a populated errors collection", ->
       subject = new BalancedApiErrorResponse(ERROR_RESPONSE)
-      expect(subject.getErrorMessages()).toEqual([
+      expect(subject.getErrorsCollection().getErrorMessages()).toEqual([
         "Some error message",
-        "Another error message"
+        '"Jimmy Error" must be a valid email address as specified by RFC-2822'
       ])
