@@ -2,9 +2,11 @@
 `import BaseErrorsCollection from "balanced/lib/base_errors_collection"`
 
 class BalancedApiErrorResponse extends BaseResponse
+  @fromXhr: (xhr) ->
+    new @(xhr.responseJSON)
   getErrorsCollection: ->
     collection = new BaseErrorsCollection()
-    for error in @response.responseJSON.errors
+    for error in @response.errors
       if error.extras
         for property, message of error.extras
           collection.addError(property, message)

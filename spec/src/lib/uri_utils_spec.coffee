@@ -21,6 +21,15 @@ describe "UriUtils", ->
       uri = UriUtils.build("http://example.org", "/value", "")
       expect(uri).toEqual("http://example.org/value")
 
+  describe "#buildPath", ->
+    it "should merge the query string and path", ->
+      result = UriUtils.buildPath("/path/query", {
+        one: 1
+        two: 2
+        three: 3
+      })
+      expect(result).toEqual("/path/query?one=1&two=2&three=3")
+
   describe "#serializeQueryStringPair", ->
     it "should encode the values and pairs", ->
       expect(UriUtils.serializeQueryStringPair("percentage[=]", "100%")).toEqual("percentage%5B%3D%5D=100%25")

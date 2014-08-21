@@ -1,15 +1,10 @@
 class BaseCollectionLoader
   @define = (connection, path) ->
-    class Klass extends @
-      get: (url) ->
-        connection.get(url)
-      post: (url, data) ->
-        connection.post(url, data)
-    new Klass(path)
+    new @(connection, path)
 
-  constructor: (@path) ->
+  constructor: (@connection, @path) ->
 
   start: ->
-    @get(@path)
+    @connection.get(@path)
 
 `export default BaseCollectionLoader`

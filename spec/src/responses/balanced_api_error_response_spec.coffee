@@ -27,7 +27,7 @@ ERROR_RESPONSE =
 describe "BalancedApiErrorResponse", ->
   describe "#getErrorsCollection", ->
     it "should return a populated errors collection", ->
-      subject = new BalancedApiErrorResponse(ERROR_RESPONSE)
+      subject = BalancedApiErrorResponse.fromXhr(ERROR_RESPONSE)
       expect(subject.getErrorsCollection().getErrorMessages()).toEqual([
         "Some error message",
         '"Jimmy Error" must be a valid email address as specified by RFC-2822'

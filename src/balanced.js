@@ -1,11 +1,16 @@
 import BalancedApiService from "balanced/services/balanced_api_service";
-module Views from "balanced/views/index";
+import Utils from "balanced/lib/utils";
 
 var BalancedKit = {
+  lib: {
+    RSVP: RSVP,
+    $: jQuery,
+    _: _
+  },
+  utils: Utils,
   service: function(secret) {
     return BalancedApiService.forKey(secret);
   },
-  Views: Views,
 };
 
 export default BalancedKit;

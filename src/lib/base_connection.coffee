@@ -2,10 +2,12 @@
 
 class BaseConnection
   @ajax = (url, settings) ->
-    $.ajax(url, settings)
+    new BalancedKit.lib.RSVP.Promise((resolve, reject)  ->
+      $.ajax(url, settings).then(resolve, reject)
+    )
 
-  settings: (settings) ->
-    return settings
+  settings: (object) ->
+    object
 
   del: (path) ->
     this.ajax(path,
@@ -26,25 +28,13 @@ class BaseConnection
   put: (path, data) ->
     this.ajax(path,
       data: data,
-      type: "POST"
+      type: "PUT"
     )
 
   ajax: (path, settings) ->
     url = UriUtils.build(@host, path)
     settings = @settings(settings)
-
-    success = (response) =>
-      @handleSuccessResponse(response)
-    error = (response) =>
-      r = @handleErrorResponse(response)
-      $.Deferred().reject(r).promise()
-
-    @constructor.ajax(url, settings).then(success, error)
-
-  handleSuccessResponse: (response) ->
-    response
-  handleErrorResponse: (response) ->
-    response
+    @constructor.ajax(url, settings)
 
 `export { BaseConnection }`
 `export default BaseConnection`

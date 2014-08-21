@@ -2,6 +2,25 @@
 /*global module:false */
 module.exports = function(grunt) {
   grunt.initConfig({
+    clean: {
+      build: {
+        src: ["build"]
+      }
+    },
+    broccoli_build: {
+      assets: {
+        dest: 'build/'
+      }
+    },
+
+    jasmine: {
+      src: 'build/src/balanced.js',
+      options: {
+        specs: 'build/spec/balanced_specs.js',
+        helpers: 'build/spec/**/*_helper.js'
+      }
+    },
+
     watch: {
       spec: {
         files: ['spec/**/*.js', 'spec/**/*.coffee'],
@@ -43,6 +62,10 @@ module.exports = function(grunt) {
     });
   });
 
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.registerTask("spec", ["clean:build", "spec:generate:runner", "broccoli_build", "jasmine"]);
 
+  grunt.loadNpmTasks('grunt-broccoli-build');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-jasmine');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 };
