@@ -4,13 +4,18 @@ get = (name) ->
   ->
     uri = @getMeta()[name]
     if uri
-      @connection.get(uri)
+      @connection.get(uri).then (r) =>
+        r = new BalancedApiResponse(r)
+        r.setConnection(@connection)
+        r
 
 has = (name) ->
   -> @hasMeta(name)
 
 class BalancedApiResponse extends BaseResponse
-  setConnection: (@connection) ->
+  setConnection: (connection) ->
+    @connection = connection
+    @
 
   hasMeta: (name) ->
     if arguments.length == 0

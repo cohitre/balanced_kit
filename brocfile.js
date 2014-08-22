@@ -53,6 +53,7 @@ lightJs = compileEs6(lightJs, {
     'balanced/**/*.js'
   ],
   legacyFilesToAppend: [
+    'jquery.js',
     'rsvp.js',
     'validator.js',
     'underscore.js'
@@ -91,7 +92,7 @@ specsTree = mergeTrees([
 
 var specsRunner = pickFiles(specsTree, {
   srcDir: 'spec',
-  files: ['index.html', './src/**/*.js', './jasmine/**/*'],
+  files: ['index.html', './jasmine/**/*'],
   destDir: 'spec'
 });
 
