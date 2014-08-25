@@ -6,23 +6,5 @@
 {{#if isLoading}}
   <p>loading</p>
 {{else}} {{#if marketplace}}
-  <h1>{{marketplace.name}}</h1>
-  <dl>
-    <dt>id</dt>
-    <dd>{{marketplace.id}}</dd>
-
-    <dt>domain_url</dt>
-    <dd>{{marketplace.domain_url}}</dd>
-  </dl>
+  {{view view.sidePanel}}
 {{/if}} {{/if}}
-
-{{#if secret}}
-  <ul>
-    {{#each customer in customers}}
-      <li>{{customer.id}} - {{customer.name}}</li>
-    {{/each}}
-  </ul>
-  {{#if isMoreCustomers}}
-    <a {{action "loadCustomers"}}>Load Customers</a>
-  {{/if}}
-{{/if}}

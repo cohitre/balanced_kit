@@ -1,57 +1,80 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <meta charset="utf-8">
-    <title>BalancedKit</title>
-    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <style type="text/css">
-      .example-output {
-        background-color: #DDD;
-        border: 1px solid #D0D0D0;
-        margin-top: 42px;
-      }
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-      .example-viewer {
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h3>Get marketplace</h3>
-      <div class="container-fluid">
-        <div class="example-app row" data-name="connection" data-files="templates/application.hbs application.js"></div>
-      </div>
+    <title>BalancedKit</title>
 
-      <h3>Details Sections</h3>
-      <p>Detail sections are the generic container for titled information</p>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-      <h4>Arbitrary template</h4>
-      <div class="container-fluid">
-        <div class="example-app row" data-name="example-1" data-files="templates/application.hbs"></div>
-      </div>
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+</head>
 
-      <h4>List details section</h4>
-      <div class="container-fluid">
-        <div class="example-app row" data-name="example-2" data-files="templates/application.hbs application_controller.js"></div>
-      </div>
+<body>
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="/">BalancedKit</a>
+                </li>
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">Shortcuts</a>
+                </li>
+                <li>
+                    <a href="#">Overview</a>
+                </li>
+                <li>
+                    <a href="#">Events</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3>Get marketplace</h3>
+                        <div class="container-fluid">
+                          <div class="example-app row" data-name="connection" data-files="templates/application.hbs application.js"></div>
+                        </div>
+
+                        <script type="text/x-handlebars" id="application">
+                          <ul class="nav nav-tabs" role="tablist">
+                            {{#each itemController="tabItem"}}
+                              <li {{bind-attr class="isSelected:active"}}>
+                                <a {{action "selectTab" this}} href="#">{{unbound name}}</a>
+                              </li>
+                            {{/each}}
+                          </ul>
+
+                          <pre>{{selectedTab.contents}}</pre>
+                        </script>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <script type="text/x-handlebars" id="application">
-      <ul class="nav nav-tabs" role="tablist">
-        {{#each itemController="tabItem"}}
-          <li {{bind-attr class="isSelected:active"}}>
-            <a {{action "selectTab" this}} href="#">{{unbound name}}</a>
-          </li>
-        {{/each}}
-      </ul>
-
-      <pre>{{selectedTab.contents}}</pre>
-    </script>
-
-    <script src="./assets/balanced.js"></script>
-  </body>
+    <script src="jquery.js"></script>
+    <script src="handlebars.js"></script>
+    <script src="ember.js"></script>
+    <script src="assets/balanced.js"></script>
+    <script src="javascripts/application.js"></script>
+</body>
 </html>
-
 
