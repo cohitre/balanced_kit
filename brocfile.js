@@ -65,7 +65,7 @@ lightJs = compileEs6(lightJs, {
 lightJs = wrapFiles(lightJs, {
   wrapper: [
     "(function(){;\n",
-    "window.BalancedKit = require('balanced/balanced')['default'];})(this)"
+    "window.BalancedKit = require('balanced/balanced')['default'];})(this);"
   ]
 });
 

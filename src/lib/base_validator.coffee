@@ -8,9 +8,9 @@ class BaseValidator
       else
         return _.isUndefined(value) || _.isNull(value)
     isInteger: (value) ->
-      !!(BalancedKit.lib._.isNumber(value) && value % 1 == 0)
+      !!(_.isNumber(value) && value % 1 == 0)
     isIntegerString: (value) ->
-      !!(BalancedKit.lib._.isString(value) && value.match(/^\d+$/))
+      !!(_.isString(value) && value.match(/^\d+$/))
     isInRange: (value, start, end) ->
       value = parseFloat(value)
       start <= value && value <= end

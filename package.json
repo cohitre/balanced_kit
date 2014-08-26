@@ -1,6 +1,6 @@
 {
   "name": "balanced_kit",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Front end tools for interacting and displaying data from the Balanced Api",
   "author": "cohitre <carlosrr@gmail.com>",
   "license": "MIT",
