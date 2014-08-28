@@ -4,11 +4,6 @@ import UiModule from "./ui/ui_module";
 import Views from "./views/index";
 
 var BalancedKit = {
-  lib: {
-    RSVP: RSVP,
-    $: jQuery,
-    _: _
-   },
   utils: Utils,
   service: function(secret) {
     return BalancedApiService.forKey(secret);
