@@ -14,14 +14,18 @@ module.exports = function(grunt) {
     },
 
     jasmine: {
-      src: 'build/src/balanced.js',
-      options: {
-        specs: 'build/spec/balanced_specs.js',
-        helpers: 'build/spec/**/*_helper.js',
-        vendor: [
-          'bower_components/underscore/underscore.js',
-          'bower_components/jquery/dist/jquery.js',
-        ],
+      balanced: {
+        src: 'build/assets/balanced.js',
+        options: {
+          specs: 'build/spec/balanced_specs.js',
+          helpers: 'build/spec/**/*_helper.js',
+          vendor: [
+            'bower_components/underscore/underscore.js',
+            'bower_components/jquery/dist/jquery.js',
+            'bower_components/handlebars/handlebars.js',
+            'bower_components/ember/ember.js'
+          ]
+        }
       }
     },
 
@@ -66,7 +70,7 @@ module.exports = function(grunt) {
     });
   });
 
-  grunt.registerTask("spec", ["clean:build", "spec:generate:runner", "broccoli_build", "jasmine"]);
+  grunt.registerTask("spec", ["clean:build", "spec:generate:runner", "broccoli_build", "jasmine:balanced"]);
 
   grunt.loadNpmTasks('grunt-broccoli-build');
   grunt.loadNpmTasks('grunt-contrib-clean');
