@@ -4,7 +4,4 @@ class MarketplaceCollectionLoader extends BaseCollectionLoader
   pathBase: "/marketplaces"
   itemsResponseKey: "marketplaces"
 
-  transformFilterAttributes: (attributes) ->
-    @buildFilterQueryString()
-
 `export default MarketplaceCollectionLoader`

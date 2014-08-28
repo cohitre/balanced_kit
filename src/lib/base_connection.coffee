@@ -36,5 +36,4 @@ class BaseConnection
     settings = @settings(settings)
     @constructor.ajax(url, settings)
 
-`export { BaseConnection }`
 `export default BaseConnection`

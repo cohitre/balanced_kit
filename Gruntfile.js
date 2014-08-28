@@ -27,8 +27,8 @@ module.exports = function(grunt) {
 
     watch: {
       spec: {
-        files: ['spec/**/*.js', 'spec/**/*.coffee'],
-        tasks: ['spec:generate:specs', 'spec:generate:runner'],
+        files: ['src/**/*.js', 'src/**/*.coffee', 'src/**/*.hbs', 'spec/**/*.js', 'spec/**/*.coffee'],
+        tasks: ['spec'],
       },
     },
   });
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
   grunt.registerTask("default", ["watch"]);
 
   grunt.registerTask('spec:generate:runner', 'Builds spec require file.', function() {
-    var specFiles = grunt.file.expand("spec/**/*_spec.js", "spec/**/*_spec.coffee");
+    var specFiles = grunt.file.expand("spec/**/*_helper*", "spec/**/*_spec.js", "spec/**/*_spec.coffee");
     specFiles = specFiles
       .map(function(fileName) {
         return fileName.replace(/\.coffee/, "").replace(/\.js/, "");

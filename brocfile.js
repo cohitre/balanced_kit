@@ -92,7 +92,7 @@ specsTree = mergeTrees([
 
 var specsRunner = pickFiles(specsTree, {
   srcDir: 'spec',
-  files: ['index.html', './jasmine/**/*'],
+  files: ['index.html', './jasmine/**/*', './helpers/**/*'],
   destDir: 'spec'
 });
 
@@ -100,6 +100,7 @@ specsTree = compileEs6(specsTree, {
   loaderFile: 'vendor/loader.js',
   ignoredModules: [],
   inputFiles: [
+    'spec/helpers/**/*.js',
     'spec/src/**/*.js'
   ],
   legacyFilesToAppend: [

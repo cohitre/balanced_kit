@@ -7,27 +7,6 @@ SAMPLE_RESPONSE =
   links: null
 
 describe 'CustomerCollectionLoader', ->
-  describe "#validate", ->
-    it "should delegate to the CustomerForm", ->
-
-  describe "#create",->
-    it "should validate the fields", ->
-
-    it "should pass the data to the connection", ->
-      connection = {
-        post: ->
-      }
-      spyOn(connection, "post").and.stub()
-
-      loader = new CustomerCollectionLoader(connection)
-      loader.create(
-        name: "Lou Customer"
-      )
-
-      expect(connection.post).toHaveBeenCalledWith("/customers", {
-        name: "Lou Customer"
-      })
-
   describe "#transformFilterAttributes", ->
     it "should serialize 4 keys", ->
       loader = new CustomerCollectionLoader()

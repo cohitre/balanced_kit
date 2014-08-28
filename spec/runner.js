@@ -1,3 +1,4 @@
+require('spec/helpers/connection_helper');
 require('spec/src/balanced_spec');
 require('spec/src/collection_loaders/customer_collection_loader_spec');
 require('spec/src/collection_loaders/marketplace_collection_loader_spec');

@@ -9,7 +9,7 @@ class BaseCollectionLoader
   constructor: (@connection) ->
 
   find: (q) ->
-    if BalancedKit.lib._.isNumber q
+    if _.isNumber q
       @findByIndex(q)
     else if isBaseHref(@pathBase, q)
       @findByHref(q)
@@ -24,7 +24,7 @@ class BaseCollectionLoader
     @findByHref path
 
   findById: (id) ->
-    @findByHref("#{@pathBase}#{id}")
+    @findByHref("#{@pathBase}/#{id}")
 
   findByHref: (href) ->
     @connection.get(href).then (response) =>
@@ -39,6 +39,9 @@ class BaseCollectionLoader
     queryStringBuilder.addValues(attributes)
     queryStringBuilder.getQueryStringAttributes()
 
+  transformFilterAttributes: (attributes) ->
+    attributes
+
   filter: (attributes={}) ->
     path = UriUtils.buildPath(@pathBase, @transformFilterAttributes(attributes))
     @connection.get(path).then (response) =>
@@ -48,5 +51,8 @@ class BaseCollectionLoader
 
   create: (attributes) ->
     @connection.post(@pathBase, attributes)
+
+  validate: (attr) ->
+    @constructor.validatorClass.validate attr
 
 `export default BaseCollectionLoader`

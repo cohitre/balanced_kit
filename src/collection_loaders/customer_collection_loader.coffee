@@ -2,6 +2,7 @@
 `import CustomerValidator from "balanced/validators/customer_validator"`
 
 class CustomerCollectionLoader extends BaseCollectionLoader
+  @validatorClass = CustomerValidator
   pathBase: "/customers"
   itemsResponseKey: "customers"
 
@@ -13,8 +14,5 @@ class CustomerCollectionLoader extends BaseCollectionLoader
       "created_at[>]": attributes.startTime
       "created_at[<]": attributes.endTime
     )
-
-  validate: (attr) ->
-    CustomerValidator.validate(attr)
 
 `export default CustomerCollectionLoader`

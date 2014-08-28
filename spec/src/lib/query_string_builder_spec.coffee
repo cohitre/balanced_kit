@@ -1,6 +1,18 @@
 `import QueryStringBuilder from "balanced/lib/query_string_builder"`
 
 describe "QueryStringBuilder", ->
+  describe "#addValues", ->
+    it "should iterate over multiple values", ->
+      builder = new QueryStringBuilder
+      builder.addValues(
+        status: ["pending", "finished"],
+        method: ["post"],
+      )
+      expect(builder.getQueryStringAttributes()).toEqual(
+        "status[in]": "pending,finished"
+        method: "post"
+      )
+
   describe "#addValue", ->
     test = (key, value) ->
       builder = new QueryStringBuilder
