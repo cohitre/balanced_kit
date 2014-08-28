@@ -17,7 +17,11 @@ module.exports = function(grunt) {
       src: 'build/src/balanced.js',
       options: {
         specs: 'build/spec/balanced_specs.js',
-        helpers: 'build/spec/**/*_helper.js'
+        helpers: 'build/spec/**/*_helper.js',
+        vendor: [
+          'bower_components/underscore/underscore.js',
+          'bower_components/jquery/dist/jquery.js',
+        ],
       }
     },
 
