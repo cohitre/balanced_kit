@@ -31,3 +31,7 @@ service.transactions()
 
 ```
 
+```hbs
+{{view Balanced.Views.DescriptionList data=marketplace dataTemplate="marketplace"}}
+```
+
