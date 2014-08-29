@@ -3,5 +3,4 @@
 Views =
   DescriptionList: DescriptionList
 
-
 `export default Views`

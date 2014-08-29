@@ -1,8 +1,10 @@
 jasmine.getConnection = ->
-  object =
+  connection =
     get: ->
     post: ->
 
-  spyOn(object, "get")
-  spyOn(object, "post")
-  object
+  spyOn(connection, "post").and.returnValue
+    then: ->
+  spyOn(connection, "get").and.returnValue
+    then: ->
+  connection

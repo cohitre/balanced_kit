@@ -7,6 +7,7 @@ module.exports = function(grunt) {
         src: ["build"]
       }
     },
+
     broccoli_build: {
       assets: {
         dest: 'build/'
@@ -70,7 +71,7 @@ module.exports = function(grunt) {
     });
   });
 
-  grunt.registerTask("spec", ["clean:build", "spec:generate:runner", "broccoli_build", "jasmine:balanced"]);
+  grunt.registerTask("spec", ["clean:build", "spec:generate:specs", "spec:generate:runner", "broccoli_build", "jasmine:balanced"]);
 
   grunt.loadNpmTasks('grunt-broccoli-build');
   grunt.loadNpmTasks('grunt-contrib-clean');

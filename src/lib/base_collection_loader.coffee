@@ -53,6 +53,6 @@ class BaseCollectionLoader
     @connection.post(@pathBase, attributes)
 
   validate: (attr) ->
-    @constructor.validatorClass.validate attr
+    @validatorClass.validate attr
 
 `export default BaseCollectionLoader`

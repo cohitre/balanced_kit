@@ -19,7 +19,7 @@
     "rsvp": "~3.0.13",
     "validator-js": "~3.17.0",
     "jquery": "~2.1.1",
-    "ember": "~1.7.0",
+    "ember": "1.8.0-beta.1",
     "handlebars": "~1.3.0"
   }
 }

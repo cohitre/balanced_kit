@@ -2,7 +2,7 @@
 `import CustomerValidator from "balanced/validators/customer_validator"`
 
 class CustomerCollectionLoader extends BaseCollectionLoader
-  @validatorClass = CustomerValidator
+  validatorClass: CustomerValidator
   pathBase: "/customers"
   itemsResponseKey: "customers"
 

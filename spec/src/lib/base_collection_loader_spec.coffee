@@ -1,15 +1,7 @@
 `import BaseCollectionLoader from 'balanced/lib/base_collection_loader'`
 
 describe 'BaseCollectionLoader', ->
-  getConnection = ->
-    connection =
-      get: ->
-      post: ->
-    spyOn(connection, "post").and.returnValue
-      then: ->
-    spyOn(connection, "get").and.returnValue
-      then: ->
-    connection
+  getConnection = jasmine.getConnection
 
   describe "#find", ->
     expectHref = (value, href) ->
@@ -95,17 +87,17 @@ describe 'BaseCollectionLoader', ->
 
   describe "#validate", ->
     it "delegates to the validator class", ->
-      class Loader extends BaseCollectionLoader
-        @validatorClass = {
-          validate: ->
-        }
+      validator =
+        validate: ->
 
-      spyOn(Loader.validatorClass, "validate")
-      l = new Loader()
-      l.validate(
+      spyOn(validator, "validate")
+      subject = new BaseCollectionLoader
+      subject.validatorClass = validator
+
+      subject.validate(
         name: "Test Me"
       )
-      expect(Loader.validatorClass.validate).toHaveBeenCalledWith(
+      expect(validator.validate).toHaveBeenCalledWith(
         name: "Test Me"
       )
 

@@ -5,12 +5,35 @@
   <title>Jasmine Spec Runner</title>
   <link rel="shortcut icon" type="image/png" href="jasmine/jasmine_favicon.png">
   <link rel="stylesheet" type="text/css" href="jasmine/jasmine.css">
+  <style>
+    #ember-testing-container {
+      background: white;
+      height: 480px;
+      margin: 0;
+      overflow: auto;
+      padding: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 640px;
+      z-index: 9999;
+    }
+    #ember-testing {
+      zoom: 50%;
+    }
+  </style>
 </head>
 <body>
-  <script type="text/javascript" src="../assets/balanced.js"></script>
   <script type="text/javascript" src="./jasmine/jasmine.js"></script>
   <script type="text/javascript" src="./jasmine/jasmine-html.js"></script>
   <script type="text/javascript" src="./jasmine/boot.js"></script>
+  <script type="text/javascript" src="../jquery.js"></script>
+  <script type="text/javascript" src="../underscore.js"></script>
+  <script type="text/javascript" src="../handlebars.js"></script>
+  <script type="text/javascript" src="../ember.js"></script>
+  <script type="text/javascript" src="../rsvp.js"></script>
+
+  <script type="text/javascript" src="../assets/balanced.js"></script>
   <script type="text/javascript" src="./balanced_specs.js"></script>
 </body>
 </html>
