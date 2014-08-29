@@ -6,5 +6,7 @@
 {{#if isLoading}}
   <p>loading</p>
 {{else}} {{#if marketplace}}
-  {{view view.sidePanel}}
+  <h1>{{marketplace.name}}</h1>
+  <hr/>
+  {{view BalancedKit.Views.DescriptionList data=marketplace}}
 {{/if}} {{/if}}

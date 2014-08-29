@@ -2,7 +2,8 @@
 
 class BaseConnection
   @ajax = (url, settings) ->
-    new BalancedKit.lib.RSVP.Promise((resolve, reject)  ->
+
+    new RSVP.Promise((resolve, reject)  ->
       $.ajax(url, settings).then(resolve, reject)
     )
 
