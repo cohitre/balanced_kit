@@ -30,11 +30,6 @@ grunt watch
 
 ## connection
 
-Description – I’m surprised at how many times I land on a project page that is obviously popular (because Twitter told me so) but I have no idea why because the project owners don’t tell me plainly what the project is or why I should care.
-
-
-
-
 
 All API calls are made through a service object.
 
