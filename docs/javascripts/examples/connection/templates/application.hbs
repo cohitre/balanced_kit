@@ -1,0 +1,10 @@
+<form {{action "open" secret on="submit"}}>
+  {{input value=secret}}
+  <button>Save</button>
+</form>
+
+{{#if isLoading}}
+  <p>loading</p>
+{{else}} {{#if marketplace}}
+  {{view view.sidePanel}}
+{{/if}} {{/if}}
