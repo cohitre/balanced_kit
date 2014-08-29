@@ -22,7 +22,11 @@ that are useful for previewing your work from `http://localhost:4200`
 broccoli serve
 ```
 
-You can also use a grunt watch to continuosly test your project using jasmine
+## Testing
+
+BalancedKit uses Jasmine for testing code. The broccoli server provides access
+to the tests suite in `http://localhost:4200/specs` and there's also a grunt watch
+task that runs the tests continuosly:
 
 ```
 grunt watch
@@ -65,8 +69,3 @@ service.transactions()
 ```hbs
 {{view Balanced.Views.DescriptionList data=marketplace dataTemplate="marketplace"}}
 ```
-
-
-### Testing
-
-`grunt watch`
