@@ -15,5 +15,18 @@ module.exports = function(config) {
     preprocessors: {
       'build/assets/**/*.js': 'coverage'
     },
+    coverageReporter: {
+      reporters: [{
+        type: 'lcov',
+        dir: 'coverage/'
+      }, {
+        type: 'json',
+        dir: 'coverage/'
+      }, {
+        type: 'text'
+      }, {
+        type: 'text-summary'
+      }]
+    },
   });
 };
