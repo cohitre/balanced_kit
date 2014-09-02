@@ -23,8 +23,6 @@ module.exports = function(config) {
         type: 'json',
         dir: 'coverage/'
       }, {
-        type: 'text'
-      }, {
         type: 'text-summary'
       }]
     },
