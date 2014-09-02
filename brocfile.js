@@ -39,34 +39,16 @@ var balancedJsSourceTree = pickFiles("src", {
   destDir: 'balanced'
 });
 
-balancedJsSourceTree = mergeTrees([
-  bowerTrees,
-  balancedJsSourceTree
-]);
-
 // assets/balanced.js
-var lightJs = mergeTrees([balancedJsSourceTree, vendorSourceTree]);
+var lightJs = mergeTrees([balancedJsSourceTree, vendorSourceTree, bowerTrees]);
 lightJs = compileEs6(lightJs, {
   loaderFile: 'vendor/loader.js',
   ignoredModules: [],
   inputFiles: [
     'balanced/**/*.js'
   ],
-  legacyFilesToAppend: [
-    'jquery.js',
-    'rsvp.js',
-    'validator.js',
-    'underscore.js'
-  ],
   wrapInEval: false,
   outputFile: '/assets/balanced.js'
-});
-
-lightJs = wrapFiles(lightJs, {
-  wrapper: [
-    "(function(){;\n",
-    "window.BalancedKit = require('balanced/balanced')['default'];})(this);"
-  ]
 });
 
 var staticHtml = handleJs("docs", {
@@ -80,42 +62,4 @@ var specsTree = pickFiles("spec", {
   destDir: "spec"
 });
 
-specsTree = filterCoffeeScript(specsTree, {
-  bare: true
-});
-
-specsTree = mergeTrees([
-  balancedJsSourceTree,
-  specsTree,
-  vendorSourceTree
-]);
-
-var specsRunner = pickFiles(specsTree, {
-  srcDir: 'spec',
-  files: ['index.html', './jasmine/**/*', './helpers/**/*'],
-  destDir: 'spec'
-});
-
-specsTree = compileEs6(specsTree, {
-  loaderFile: 'vendor/loader.js',
-  ignoredModules: [],
-  inputFiles: [
-    'spec/helpers/**/*.js',
-    'spec/src/**/*.js'
-  ],
-  legacyFilesToAppend: [
-    'spec/runner.js'
-  ],
-  wrapInEval: false,
-  outputFile: '/spec/balanced_specs.js'
-});
-
-var bowerTree = mergeTrees(findBowerTrees());
-
-staticHtml = mergeTrees([
-  specsRunner,
-  staticHtml,
-  bowerTree
-]);
-
-module.exports = mergeTrees([lightJs, staticHtml, specsTree]);
+module.exports = mergeTrees([lightJs, specsTree, staticHtml, bowerTrees]);

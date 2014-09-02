@@ -1,3 +1,3 @@
-`import Index from 'balanced/views/index'`
+Index = require('balanced/views/index').default
 
 describe 'Index', ->

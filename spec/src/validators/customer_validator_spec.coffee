@@ -1,4 +1,4 @@
-`import CustomerValidator from 'balanced/validators/customer_validator'`
+CustomerValidator = require('balanced/validators/customer_validator').default
 
 describe 'CustomerValidator', ->
   describe "dob_year", ->
@@ -9,6 +9,11 @@ describe 'CustomerValidator', ->
     it "should be between 1000 and 2999", ->
       validator = new CustomerValidator
       expect(validator.validate_field("dob_year", "999")).toEqual(["must be between 1000 and 2999"])
+
+    it "is optional", ->
+      validator = new CustomerValidator
+      expect(validator.validate_field("dob_year", "")).toEqual([])
+      expect(validator.validate_field("dob_year", null)).toEqual([])
 
   describe "dob_month", ->
     it "is optional", ->

@@ -1,4 +1,4 @@
-`import BaseCollectionLoader from 'balanced/lib/base_collection_loader'`
+BaseCollectionLoader = require('balanced/lib/base_collection_loader').default
 
 describe 'BaseCollectionLoader', ->
   getConnection = jasmine.getConnection
@@ -38,8 +38,11 @@ describe 'BaseCollectionLoader', ->
 
   describe "#findByHref", ->
     it "delegates to the connection", ->
-      connection = getConnection()
+      connection = getConnection({
+        transactions: [{}]
+      })
       loader = new BaseCollectionLoader(connection)
+      loader.itemsResponseKey = "transactions"
       loader.findByHref("/transactions/TRxxxxxxxxxxxx")
       expect(connection.get).toHaveBeenCalledWith('/transactions/TRxxxxxxxxxxxx')
 
@@ -62,6 +65,10 @@ describe 'BaseCollectionLoader', ->
       expect(loader.transformFilterAttributes(name: "dr. attr")).toEqual(
         name: "dr. attr"
       )
+
+    it "defaults the attributes to empty object", ->
+      loader = new BaseCollectionLoader
+      expect(loader.transformFilterAttributes()).toEqual({})
 
   describe "#filter", ->
     it "should fetch a url with query string", ->

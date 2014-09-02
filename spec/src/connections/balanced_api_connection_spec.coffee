@@ -1,4 +1,4 @@
-`import BalancedApiConnection from "balanced/connections/balanced_api_connection"`
+BalancedApiConnection = require("balanced/connections/balanced_api_connection").default
 
 describe "BalancedApiConnection", ->
   describe "#isAuthorized?", ->
@@ -27,6 +27,7 @@ describe "BalancedApiConnection", ->
           json: 'application/vnd.balancedpayments+json; version=1.1'
       )
 
+
     it "should encode the data", ->
       subject = new BalancedApiConnection()
       additional =
@@ -36,3 +37,29 @@ describe "BalancedApiConnection", ->
         type: "POST"
 
       expect(subject.settings(additional).data).toEqual('{"name":"Jimmy Test","age":10}')
+
+  describe "#getEncodedAuthorization", ->
+    it "should encode the api key", ->
+      subject = new BalancedApiConnection("test-xxxxxxxx")
+      expect(subject.getEncodedAuthorization()).toEqual 'Basic dGVzdC14eHh4eHh4eDo='
+
+  describe "#handleSuccessResponse", ->
+    it "should return a BalancedApiResponse", ->
+      subject = new BalancedApiConnection("test-xxxxxxxx")
+      response = subject.handleSuccessResponse({})
+      expect(response.connection.apiKey).toBe "test-xxxxxxxx"
+
+  describe "#handleErrorResponse", ->
+    it "should return an errors collection", ->
+      subject = new BalancedApiConnection("test-xxxxxxxx")
+      response = subject.handleErrorResponse(
+        errors: [{
+          status: "Unauthorized"
+          category_code: "authentication-required"
+          description: "Some error message"
+          status_code: 401
+          category_type: "permission"
+          request_id: "OHMxxxxxxxxxxxxxxxx"
+        }]
+      )
+      expect(response.errors.length).toBe 1

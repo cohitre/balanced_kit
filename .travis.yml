@@ -14,4 +14,4 @@ before_install:
 install:
   - npm install
   - bower install
-script: "grunt spec"
+script: "grunt dist && grunt karma:unit"

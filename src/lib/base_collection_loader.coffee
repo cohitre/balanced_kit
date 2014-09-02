@@ -40,9 +40,9 @@ class BaseCollectionLoader
     queryStringBuilder.getQueryStringAttributes()
 
   transformFilterAttributes: (attributes) ->
-    attributes
+    attributes || {}
 
-  filter: (attributes={}) ->
+  filter: (attributes) ->
     path = UriUtils.buildPath(@pathBase, @transformFilterAttributes(attributes))
     @connection.get(path).then (response) =>
       r = new BalancedApiResponse(response)

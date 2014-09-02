@@ -1,4 +1,4 @@
-`import BaseValidator from 'balanced/lib/base_validator'`
+BaseValidator = require('balanced/lib/base_validator').default
 
 describe 'BaseValidator', ->
   describe ".tests", ->
@@ -37,6 +37,13 @@ describe 'BaseValidator', ->
         expect(tests.isInRange("10", 2, 4)).toBe false
         expect(tests.isInRange(3, 2, 4)).toBe true
         expect(tests.isInRange(30, 2, 4)).toBe false
+
+    describe ".isOutsideRange", ->
+      it "should handle strings and integers", ->
+        expect(tests.isOutsideRange("3", 2, 4)).toBe false
+        expect(tests.isOutsideRange("10", 2, 4)).toBe true
+        expect(tests.isOutsideRange(3, 2, 4)).toBe false
+        expect(tests.isOutsideRange(30, 2, 4)).toBe true
 
   describe "#validate_field", ->
     it "should run the validator", ->

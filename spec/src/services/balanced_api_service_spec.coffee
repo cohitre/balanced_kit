@@ -1,6 +1,4 @@
-`import BalancedApiService from "balanced/services/balanced_api_service"`
-
-ERROR_RESPONSE = "error response"
+BalancedApiService = require("balanced/services/balanced_api_service").default
 
 fakeConnection = (response, isSuccess=true) ->
   get: (path) ->

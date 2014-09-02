@@ -4,6 +4,7 @@ $ ->
     name = @getAttribute("data-name")
     (new ExampleLoader(name, fileNames)).load(@)
 
+
 class ExampleLoader
   constructor: (@name, fileNames) ->
     @fileNames = Ember.A(fileNames)

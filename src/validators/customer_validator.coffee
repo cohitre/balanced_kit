@@ -9,7 +9,7 @@ class CustomerValidator extends BaseValidator
         return errors
       else if !(tests.isInteger(value) || tests.isIntegerString(value))
         errors.push "must be a whole number"
-      else if !tests.isInRange(value, 1000, 2999)
+      else if tests.isOutsideRange(value, 1000, 2999)
         errors.push "must be between 1000 and 2999"
       errors
 
@@ -18,7 +18,7 @@ class CustomerValidator extends BaseValidator
         return errors
       else if !(tests.isInteger(value) || tests.isIntegerString(value))
         errors.push "must be a whole number"
-      else if !tests.isInRange(value, 1, 12)
+      else if tests.isOutsideRange(value, 1, 12)
         errors.push "must be between 1 and 12"
       errors
 

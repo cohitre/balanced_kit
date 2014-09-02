@@ -1,4 +1,4 @@
-`import BaseConnection from 'balanced/lib/base_connection'`
+BaseConnection = require('balanced/lib/base_connection').default
 
 describe 'BaseConnection', ->
   generateSubject = () ->
