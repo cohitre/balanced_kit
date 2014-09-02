@@ -1,4 +1,4 @@
-`import BaseService from 'balanced/lib/base_service'`
+BaseService = require('balanced/lib/base_service').default
 
 describe 'BaseService', ->
   describe "#toString", ->

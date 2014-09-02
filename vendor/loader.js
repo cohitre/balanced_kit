@@ -1,5 +1,6 @@
 var define, requireModule, require, requirejs;
 
+/* istanbul ignore next */
 (function() {
   var registry = {}, seen = {};
 

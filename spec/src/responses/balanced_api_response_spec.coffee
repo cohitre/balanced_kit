@@ -1,4 +1,4 @@
-`import BalancedApiResponse from "balanced/responses/balanced_api_response"`
+BalancedApiResponse = require("balanced/responses/balanced_api_response").default
 
 EXAMPLE_RESPONSE =
   meta:

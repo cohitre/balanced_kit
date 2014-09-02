@@ -1,10 +1,12 @@
 var filterCoffeeScript = require('broccoli-coffee');
 var compileEs6 = require('broccoli-es6-concatenator');
+var compileModules = require('broccoli-es6-module-transpiler');
 var staticCompiler = require('broccoli-static-compiler');
 var mergeTrees = require('broccoli-merge-trees');
 var wrapFiles = require('broccoli-wrap');
 var findBowerTrees = require('broccoli-bower');
 var filterTemplates = require('broccoli-template');
+var AMDFormatter = require('es6-module-transpiler-amd-formatter');
 
 var handleJs = function(treeName, options) {
   var tree = staticCompiler(treeName, options);
@@ -39,34 +41,16 @@ var balancedJsSourceTree = pickFiles("src", {
   destDir: 'balanced'
 });
 
-balancedJsSourceTree = mergeTrees([
-  bowerTrees,
-  balancedJsSourceTree
-]);
-
 // assets/balanced.js
-var lightJs = mergeTrees([balancedJsSourceTree, vendorSourceTree]);
+var lightJs = mergeTrees([balancedJsSourceTree, vendorSourceTree, bowerTrees]);
 lightJs = compileEs6(lightJs, {
   loaderFile: 'vendor/loader.js',
   ignoredModules: [],
   inputFiles: [
     'balanced/**/*.js'
   ],
-  legacyFilesToAppend: [
-    'jquery.js',
-    'rsvp.js',
-    'validator.js',
-    'underscore.js'
-  ],
   wrapInEval: false,
   outputFile: '/assets/balanced.js'
-});
-
-lightJs = wrapFiles(lightJs, {
-  wrapper: [
-    "(function(){;\n",
-    "window.BalancedKit = require('balanced/balanced')['default'];})(this);"
-  ]
 });
 
 var staticHtml = handleJs("docs", {
@@ -80,42 +64,4 @@ var specsTree = pickFiles("spec", {
   destDir: "spec"
 });
 
-specsTree = filterCoffeeScript(specsTree, {
-  bare: true
-});
-
-specsTree = mergeTrees([
-  balancedJsSourceTree,
-  specsTree,
-  vendorSourceTree
-]);
-
-var specsRunner = pickFiles(specsTree, {
-  srcDir: 'spec',
-  files: ['index.html', './jasmine/**/*', './helpers/**/*'],
-  destDir: 'spec'
-});
-
-specsTree = compileEs6(specsTree, {
-  loaderFile: 'vendor/loader.js',
-  ignoredModules: [],
-  inputFiles: [
-    'spec/helpers/**/*.js',
-    'spec/src/**/*.js'
-  ],
-  legacyFilesToAppend: [
-    'spec/runner.js'
-  ],
-  wrapInEval: false,
-  outputFile: '/spec/balanced_specs.js'
-});
-
-var bowerTree = mergeTrees(findBowerTrees());
-
-staticHtml = mergeTrees([
-  specsRunner,
-  staticHtml,
-  bowerTree
-]);
-
-module.exports = mergeTrees([lightJs, staticHtml, specsTree]);
+module.exports = mergeTrees([lightJs, specsTree, staticHtml, bowerTrees]);

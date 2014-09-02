@@ -1,4 +1,4 @@
-`import Utils from "balanced/lib/utils"`
+Utils = require("balanced/lib/utils").default
 
 describe "Utils", ->
   describe "#reject", ->

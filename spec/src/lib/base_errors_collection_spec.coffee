@@ -1,4 +1,4 @@
-`import BaseErrorsCollection from 'balanced/lib/base_errors_collection'`
+BaseErrorsCollection = require('balanced/lib/base_errors_collection').default
 
 describe 'BaseErrorsCollection', ->
   describe "#addError", ->

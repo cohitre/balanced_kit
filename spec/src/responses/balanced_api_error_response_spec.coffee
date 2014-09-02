@@ -1,26 +1,26 @@
-`import BalancedApiErrorResponse from "balanced/responses/balanced_api_error_response"`
+BalancedApiErrorResponse = require("balanced/responses/balanced_api_error_response").default
+
 ERROR_RESPONSE =
   responseJSON:
-    "errors": [
+    errors: [
       {
-        "status": "Unauthorized",
-        "category_code": "authentication-required",
-        "description": "Some error message",
-        "status_code": 401,
-        "category_type": "permission",
-        "request_id": "OHMxxxxxxxxxxxxxxxx"
+        status: "Unauthorized",
+        category_code: "authentication-required",
+        description: "Some error message",
+        status_code: 401,
+        category_type: "permission",
+        request_id: "OHMxxxxxxxxxxxxxxxx"
       },
       {
-        "status": "Bad Request",
-        "category_code": "request",
-        "additional": null,
-        "status_code": 400,
-        "category_type": "request",
-        "extras": {
-          "email": "\"Jimmy Error\" must be a valid email address as specified by RFC-2822"
-        },
-        "request_id": "OHMxxxxxxxxxxxxxxxx",
-        "description": "Invalid field [email] - \"Jimmy Error\" must be a valid email address as specified by RFC-2822."
+        status: "Bad Request",
+        category_code: "request",
+        additional: null,
+        status_code: 400,
+        category_type: "request",
+        extras:
+          email: "\"Jimmy Error\" must be a valid email address as specified by RFC-2822"
+        request_id: "OHMxxxxxxxxxxxxxxxx",
+        description: "Invalid field [email] - \"Jimmy Error\" must be a valid email address as specified by RFC-2822."
       }
     ]
 

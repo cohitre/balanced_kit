@@ -1,4 +1,4 @@
-`import DescriptionList from "balanced/views/description_list"`
+DescriptionList = require("balanced/views/description_list").default
 
 describe "DescriptionList", ->
   beforeEach ->

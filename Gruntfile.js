@@ -14,19 +14,11 @@ module.exports = function(grunt) {
       }
     },
 
-    jasmine: {
-      balanced: {
-        src: 'build/assets/balanced.js',
-        options: {
-          specs: 'build/spec/balanced_specs.js',
-          helpers: 'build/spec/**/*_helper.js',
-          vendor: [
-            'bower_components/underscore/underscore.js',
-            'bower_components/jquery/dist/jquery.js',
-            'bower_components/handlebars/handlebars.js',
-            'bower_components/ember/ember.js'
-          ]
-        }
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js',
+        singleRun: true,
+        browsers: ['PhantomJS']
       }
     },
 
@@ -71,10 +63,11 @@ module.exports = function(grunt) {
     });
   });
 
-  grunt.registerTask("spec", ["clean:build", "spec:generate:specs", "spec:generate:runner", "broccoli_build", "jasmine:balanced"]);
+  grunt.registerTask("spec", ["dist", "karma:unit"]);
+  grunt.registerTask("dist", ["clean:build", "spec:generate:specs", "spec:generate:runner", "broccoli_build"]);
 
   grunt.loadNpmTasks('grunt-broccoli-build');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-karma');
 };

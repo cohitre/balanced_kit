@@ -11,11 +11,6 @@ DEFAULT_SETTINGS =
   accepts:
     json: 'application/vnd.balancedpayments+json; version=1.1'
 
-merge = (dest, objs...) ->
-  for obj in objs
-    dest[k] = v for k, v of obj
-  dest
-
 class BalancedApiConnection extends BaseConnection
   constructor: (@apiKey) ->
 
@@ -34,7 +29,7 @@ class BalancedApiConnection extends BaseConnection
     if (this.isAuthorized())
       headers.Authorization = this.getEncodedAuthorization()
 
-    settings = merge(
+    settings = _.extend(
       headers: headers
     , DEFAULT_SETTINGS, additionalSettings)
 

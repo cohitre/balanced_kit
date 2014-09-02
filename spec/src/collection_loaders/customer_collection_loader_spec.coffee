@@ -1,4 +1,4 @@
-`import CustomerCollectionLoader from 'balanced/collection_loaders/customer_collection_loader'`
+CustomerCollectionLoader = require("balanced/collection_loaders/customer_collection_loader").default
 
 SAMPLE_RESPONSE =
   customers: "customers list"

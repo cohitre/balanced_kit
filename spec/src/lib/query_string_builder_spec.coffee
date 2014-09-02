@@ -1,4 +1,4 @@
-`import QueryStringBuilder from "balanced/lib/query_string_builder"`
+QueryStringBuilder = require("balanced/lib/query_string_builder").default
 
 describe "QueryStringBuilder", ->
   describe "#addValues", ->

@@ -1,4 +1,4 @@
-`import CustomerValidator from 'balanced/validators/customer_validator'`
+CustomerValidator = require('balanced/validators/customer_validator').default
 
 describe 'CustomerValidator', ->
   describe "dob_year", ->

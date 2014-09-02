@@ -1,4 +1,4 @@
-`import BaseValidator from 'balanced/lib/base_validator'`
+BaseValidator = require('balanced/lib/base_validator').default
 
 describe 'BaseValidator', ->
   describe ".tests", ->
