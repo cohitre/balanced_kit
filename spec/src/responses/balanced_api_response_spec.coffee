@@ -18,16 +18,11 @@ itShouldDelegateToConnectionGet = (methodName, uriKey) ->
   uriKey ||= methodName
 
   it "delegates to connection.get", ->
-    connection =
-      get: ->
-
+    connection = jasmine.getConnection(EXAMPLE_RESPONSE)
     meta = {}
     meta[uriKey] = "/some/path"
     response = new BalancedApiResponse(meta: meta)
     response.setConnection(connection)
-    spyOn(connection, "get").and.returnValue(
-      then: ->
-    )
     response[methodName]()
     expect(connection.get).toHaveBeenCalledWith "/some/path"
 

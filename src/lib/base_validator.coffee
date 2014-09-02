@@ -11,6 +11,10 @@ class BaseValidator
       !!(_.isNumber(value) && value % 1 == 0)
     isIntegerString: (value) ->
       !!(_.isString(value) && value.match(/^\d+$/))
+
+    isOutsideRange: (value, start, end) ->
+      !@isInRange(value, start, end)
+
     isInRange: (value, start, end) ->
       value = parseFloat(value)
       start <= value && value <= end
