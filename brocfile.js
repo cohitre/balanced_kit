@@ -1,12 +1,10 @@
 var filterCoffeeScript = require('broccoli-coffee');
 var compileEs6 = require('broccoli-es6-concatenator');
-var compileModules = require('broccoli-es6-module-transpiler');
 var staticCompiler = require('broccoli-static-compiler');
 var mergeTrees = require('broccoli-merge-trees');
 var wrapFiles = require('broccoli-wrap');
 var findBowerTrees = require('broccoli-bower');
 var filterTemplates = require('broccoli-template');
-var AMDFormatter = require('es6-module-transpiler-amd-formatter');
 
 var handleJs = function(treeName, options) {
   var tree = staticCompiler(treeName, options);
