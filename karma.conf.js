@@ -2,6 +2,7 @@ module.exports = function(config) {
   config.set({
     frameworks: ['jasmine'],
     files: [
+      'bower_components/moment/moment.js',
       'bower_components/underscore/underscore.js',
       'bower_components/rsvp/rsvp.js',
       'bower_components/jquery/dist/jquery.js',
@@ -17,10 +18,7 @@ module.exports = function(config) {
     },
     coverageReporter: {
       reporters: [{
-        type: 'lcov',
-        dir: 'coverage/'
-      }, {
-        type: 'json',
+        type: 'html',
         dir: 'coverage/'
       }, {
         type: 'text-summary'

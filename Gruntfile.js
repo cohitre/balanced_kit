@@ -57,7 +57,9 @@ module.exports = function(grunt) {
       });
 
       if (!grunt.file.exists(specFileName)) {
-        var fileContents = "`import " + modelName + " from '" + fileName.replace(/^src/, "balanced").replace(/\..+$/, "") +  "'`\n\ndescribe '" + modelName + "', ->";
+        var fileContents = "" + modelName + " = require('" +
+            fileName.replace(/^src/, "balanced").replace(/\..+$/, "") +
+            "')['default']\n\ndescribe '" + modelName + "', ->";
         grunt.file.write(specFileName, fileContents);
       }
     });

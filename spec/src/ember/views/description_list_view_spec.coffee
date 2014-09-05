@@ -1,4 +1,4 @@
-DescriptionList = require("balanced/views/description_list").default
+DescriptionList = require("balanced/ember/views/description_list_view").default
 
 describe "DescriptionList", ->
   beforeEach ->
@@ -19,13 +19,11 @@ describe "DescriptionList", ->
 
   describe "#render", ->
     it "renders the data with the default template", ->
-      view = DescriptionList.create(
+      container = jasmine.container
+      view = DescriptionList.create
         data:
           name: "Kermit Frog"
           animal: "frog"
-      )
-
-      container = jasmine.container
 
       Ember.run ->
         view.appendTo(container.get())

@@ -1,0 +1,8 @@
+<thead>
+  {{view "ember/container" childViews=view.columnHeaderViews tagName="tr"}}
+</thead>
+<tbody>
+  {{#each cells in view.rowCellViews}}
+    {{view "ember/container" childViews=cells tagName="tr"}}
+  {{/each}}
+</tbody>

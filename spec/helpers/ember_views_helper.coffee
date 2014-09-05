@@ -13,3 +13,9 @@ jasmine.container =
 
   $: (args...) ->
     @get().find(args...)
+
+  text: (selector) ->
+    if arguments.length > 1
+      $.trim @$(selector).text()
+    else
+      $.trim @get().text()

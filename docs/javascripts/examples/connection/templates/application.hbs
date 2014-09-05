@@ -8,5 +8,8 @@
 {{else}} {{#if marketplace}}
   <h1>{{marketplace.name}}</h1>
   <hr/>
-  {{view BalancedKit.Views.DescriptionList data=marketplace dataTemplate="marketplace"}}
+
+  {{view apiKeysTable content=marketplaceApiKeys classNames="table table-bordered"}}
+  <hr/>
+  {{view "balanced_kit.description_list" data=marketplace dataTemplate="marketplace"}}
 {{/if}} {{/if}}
