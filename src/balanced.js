@@ -32,6 +32,4 @@ registerView("table_cells/text_cell");
 registerView("table_cells/date_cell");
 registerView("table_cells/empty_cell");
 
-this.BalancedKit = BalancedKit;
-
 export default BalancedKit;
