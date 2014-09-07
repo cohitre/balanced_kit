@@ -1,8 +1,6 @@
-`import BalancedApiResponse from "balanced/responses/balanced_api_response"`
-`import BalancedApiErrorResponse from "balanced/responses/balanced_api_error_response"`
-
-`import BaseConnection from "balanced/lib/base_connection"`
-`import Utils from "balanced/lib/utils"`
+BalancedApiResponse = require("balanced/responses/balanced_api_response").default
+BalancedApiErrorResponse = require("balanced/responses/balanced_api_error_response").default
+BaseConnection = require("balanced/lib/base_connection").default
 
 BALANCED_API_HOST = "https://api.balancedpayments.com"
 DEFAULT_SETTINGS =
@@ -17,7 +15,7 @@ class BalancedApiConnection extends BaseConnection
   host: BALANCED_API_HOST
 
   getEncodedAuthorization: ->
-    Utils.encodeAuthorization(@apiKey)
+    'Basic ' + window.btoa(@apiKey + ':')
 
   isAuthorized: ->
     @apiKey?

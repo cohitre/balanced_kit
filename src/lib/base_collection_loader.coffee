@@ -1,6 +1,6 @@
-`import UriUtils from "balanced/lib/uri_utils"`
-`import BalancedApiResponse from "balanced/responses/balanced_api_response"`
-`import QueryStringBuilder from "balanced/lib/query_string_builder"`
+UriUtils = require("balanced/lib/uri_utils").default
+BalancedApiResponse = require("balanced/responses/balanced_api_response").default
+QueryStringBuilder = require("balanced/lib/query_string_builder").default
 
 isBaseHref = (pathBase, q) ->
   _.isString(q) && q.indexOf(pathBase) >= 0

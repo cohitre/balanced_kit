@@ -1,4 +1,4 @@
-`import Template from "balanced/ember/templates/table"`
+Template = require("balanced/ember/templates/table").default
 
 TableView = Ember.View.extend
   template: Template

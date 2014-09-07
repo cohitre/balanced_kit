@@ -1,5 +1,5 @@
-`import TableBuilder from "./builders/table_builder"`
-`import TableCellBuilder from "./builders/table_cell_builder"`
+TableBuilder = require("balanced/ui/builders/table_builder").default
+TableCellBuilder = require("balanced/ui/builders/table_cell_builder").default
 
 UiModule =
   dependencies:

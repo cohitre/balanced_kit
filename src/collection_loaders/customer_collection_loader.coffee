@@ -1,5 +1,5 @@
-`import BaseCollectionLoader from "balanced/lib/base_collection_loader"`
-`import CustomerValidator from "balanced/validators/customer_validator"`
+BaseCollectionLoader = require("balanced/lib/base_collection_loader").default
+CustomerValidator = require("balanced/validators/customer_validator").default
 
 class CustomerCollectionLoader extends BaseCollectionLoader
   validatorClass: CustomerValidator

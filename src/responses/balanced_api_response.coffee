@@ -1,4 +1,4 @@
-`import BaseResponse from "balanced/lib/base_response"`
+BaseResponse = require("balanced/lib/base_response").default
 
 get = (name) ->
   ->

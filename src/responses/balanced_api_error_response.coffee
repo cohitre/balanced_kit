@@ -1,5 +1,5 @@
-`import BaseResponse from "balanced/lib/base_response"`
-`import BaseErrorsCollection from "balanced/lib/base_errors_collection"`
+BaseResponse = require("balanced/lib/base_response").default
+BaseErrorsCollection = require("balanced/lib/base_errors_collection").default
 
 class BalancedApiErrorResponse extends BaseResponse
   getErrorsCollection: ->

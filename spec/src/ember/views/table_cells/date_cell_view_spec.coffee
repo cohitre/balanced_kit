@@ -33,5 +33,5 @@ describe "DateCellView", ->
         view.set "date", new Date(SAMPLE_DATE_STRING)
         view.appendTo(container.get())
 
-      expect($.trim(view.$(".text-heavy").text())).toEqual "Dec 25, 1995"
-      expect($.trim(view.$(".text-light").text())).toMatch /\d?\d:33 (a|p)m/
+      expect(container.text(".text-heavy")).toEqual "Dec 25, 1995"
+      expect(container.text(".text-light")).toMatch /\d?\d:33 (a|p)m/

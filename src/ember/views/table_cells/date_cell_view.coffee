@@ -1,4 +1,4 @@
-`import Template from "../../templates/table_cells/heavy_light_cell"`
+Template = require("balanced/ember/templates/table_cells/heavy_light_cell").default
 
 DateCellView = Ember.View.extend
   template: Template

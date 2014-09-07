@@ -1,4 +1,4 @@
-`import UriUtils from "balanced/lib/uri_utils"`
+UriUtils = require("balanced/lib/uri_utils").default
 
 class BaseConnection
   @ajax = (url, settings) ->

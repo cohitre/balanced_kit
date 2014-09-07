@@ -1,6 +1,6 @@
-`import BaseViewBuilder from "balanced/lib/base_view_builder"`
-`import TableCellBuilder from "./table_cell_builder"`
-`import TableHeaderBuilder from "./table_header_builder"`
+BaseViewBuilder = require("balanced/lib/base_view_builder").default
+TableCellBuilder = require("balanced/ui/builders/table_cell_builder").default
+TableHeaderBuilder = require("balanced/ui/builders/table_header_builder").default
 
 class TableColumnBuilder extends BaseViewBuilder
   @build: (args...) ->

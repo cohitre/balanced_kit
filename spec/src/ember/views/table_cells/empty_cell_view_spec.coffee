@@ -1,4 +1,4 @@
-EmptyCellView = require('balanced/ember/views/table_cells/empty_cell_view')['default']
+EmptyCellView = require('balanced/ember/views/table_cells/empty_cell_view').default
 
 describe "EmptyCellView", ->
   beforeEach ->
@@ -13,4 +13,4 @@ describe "EmptyCellView", ->
       Ember.run ->
         view.appendTo(jasmine.container.get())
 
-      expect($.trim(view.$().text())).toEqual ""
+      expect(jasmine.container.text()).toEqual ""

@@ -13,4 +13,4 @@ describe "EmptyHeaderCellView", ->
       Ember.run ->
         view.appendTo(jasmine.container.get())
 
-      expect($.trim(view.$().text())).toEqual ""
+      expect(jasmine.container.text()).toEqual ""

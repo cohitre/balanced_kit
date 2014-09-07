@@ -5,6 +5,9 @@ jasmine.container =
     testElement = $("<div id='#{TESTING_CONTAINER_ID}'><div id='ember-testing'></div></div>")
     $(document.body).append testElement
 
+  html: ->
+    @get().html()
+
   get: ->
     $("##{TESTING_CONTAINER_ID}")
 
@@ -15,7 +18,7 @@ jasmine.container =
     @get().find(args...)
 
   text: (selector) ->
-    if arguments.length > 1
+    if arguments.length == 1
       $.trim @$(selector).text()
     else
       $.trim @get().text()

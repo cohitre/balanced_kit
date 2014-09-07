@@ -1,4 +1,4 @@
-`import BaseViewBuilder from "balanced/lib/base_view_builder"`
+BaseViewBuilder = require("balanced/lib/base_view_builder").default
 
 class TableCellBuilder extends BaseViewBuilder
   @build: (args...) ->

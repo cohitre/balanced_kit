@@ -1,4 +1,4 @@
-`import Template from "../templates/description_list"`
+Template = require("balanced/ember/templates/description_list").default
 
 DescriptionListView = Ember.View.extend
   template: Template

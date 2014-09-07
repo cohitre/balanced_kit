@@ -1,5 +1,5 @@
-`import BaseViewBuilder from "balanced/lib/base_view_builder"`
-`import TextHeaderCellView from "balanced/ember/views/table_cells/text_header_cell_view"`
+BaseViewBuilder = require("balanced/lib/base_view_builder").default
+TextHeaderCellView = require("balanced/ember/views/table_cells/text_header_cell_view").default
 
 class TableHeaderBuilder extends BaseViewBuilder
   @build: (args...) ->

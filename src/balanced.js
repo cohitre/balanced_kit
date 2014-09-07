@@ -1,9 +1,7 @@
-import BalancedApiService from "./services/balanced_api_service";
-import Utils from "./lib/utils";
-import UiModule from "./ui/index";
+var BalancedApiService = require("balanced/services/balanced_api_service").default;
+var UiModule = require("balanced/ui/index").default;
 
 var BalancedKit = {
-  utils: Utils,
   service: function(secret) {
     return BalancedApiService.forKey(secret);
   },
@@ -34,5 +32,6 @@ registerView("table_cells/text_cell");
 registerView("table_cells/date_cell");
 registerView("table_cells/empty_cell");
 
+this.BalancedKit = BalancedKit;
+
 export default BalancedKit;
-this.BalancedKit = BalancedKit

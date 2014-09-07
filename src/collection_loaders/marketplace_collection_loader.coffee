@@ -1,4 +1,4 @@
-`import BaseCollectionLoader from "balanced/lib/base_collection_loader"`
+BaseCollectionLoader = require("balanced/lib/base_collection_loader").default
 
 class MarketplaceCollectionLoader extends BaseCollectionLoader
   pathBase: "/marketplaces"

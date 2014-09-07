@@ -23,7 +23,6 @@ require('spec/src/lib/base_validator_spec');
 require('spec/src/lib/base_view_builder_spec');
 require('spec/src/lib/query_string_builder_spec');
 require('spec/src/lib/uri_utils_spec');
-require('spec/src/lib/utils_spec');
 require('spec/src/responses/balanced_api_error_response_spec');
 require('spec/src/responses/balanced_api_response_spec');
 require('spec/src/services/balanced_api_service_spec');

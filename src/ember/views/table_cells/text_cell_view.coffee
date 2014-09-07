@@ -1,4 +1,4 @@
-`import TextView from "../text_view"`
+TextView = require("balanced/ember/views/text_view").default
 
 TextCellView = TextView.extend
   tagName: "td"

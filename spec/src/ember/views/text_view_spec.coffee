@@ -17,11 +17,11 @@ describe 'TextView', ->
       Ember.run ->
         view.appendTo(container.get())
 
-      expect($.trim(container.$(".sample").text())).toBe ""
+      expect(container.text(".sample")).toBe ""
 
       Ember.run ->
         view.set("text", "Miss Piggy")
-      expect($.trim(container.$(".sample").text())).toBe "Miss Piggy"
+      expect(container.text(".sample")).toBe "Miss Piggy"
 
   describe "#isBlank", ->
     it "should be true when there's no text", ->

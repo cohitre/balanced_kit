@@ -1,4 +1,4 @@
-`import Template from "../templates/text"`
+Template = require("balanced/ember/templates/text").default
 
 TextView = Ember.View.extend
   template: Template

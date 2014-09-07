@@ -2,8 +2,6 @@ _.each(BalancedKit.container.registry, function(value, key) {
   App.register(key.replace(/\//g, "."), value);
 });
 
-window.Application = App;
-
 App.ApplicationController = Ember.Controller.extend({
   service: Ember.computed(function () {
     return BalancedKit.service(this.get("secret"));

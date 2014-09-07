@@ -1,4 +1,4 @@
-`import BaseErrorsCollection from "./base_errors_collection"`
+BaseErrorsCollection = require("balanced/lib/base_errors_collection").default
 
 class BaseValidator
   @tests:
