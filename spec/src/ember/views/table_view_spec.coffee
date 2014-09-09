@@ -9,8 +9,9 @@ describe "TableView", ->
 
   describe "#columnHeaderViews", ->
     mockBuilder = (emberView) ->
-      headerBuilder:
-        toEmber: -> emberView
+      getHeaderBuilder: ->
+        toEmber: ->
+          emberView
 
     it "gets the headerViews", ->
       view = TableView.create()
@@ -25,8 +26,8 @@ describe "TableView", ->
 
   describe "#generateRowCellViews", ->
     mockBuilder = (prefix) ->
-      cellBuilder:
-        toEmber: (name) ->
+      getCellBuilder: (name) ->
+        toEmber: ->
           "#{prefix} : #{name}"
 
     it "returns the cells for an object", ->
@@ -46,8 +47,8 @@ describe "TableView", ->
 
   describe ".rowCellViews", ->
     mockBuilder = (prefix) ->
-      cellBuilder:
-        toEmber: (name) ->
+      getCellBuilder: (name) ->
+        toEmber: ->
           "#{prefix} : #{name}"
 
     it "maps the objects to cell rows", ->
@@ -74,14 +75,14 @@ describe "TableView", ->
     registry.register("view:ember/container", Ember.ContainerView)
 
     mockColumnBuilder = (headerText, value) ->
-      headerBuilder:
+      getHeaderBuilder: ->
         toEmber: ->
           Ember.View.extend(
             template: -> headerText
             tagName: "th"
           )
-      cellBuilder:
-        toEmber: (object) ->
+      getCellBuilder: (object) ->
+        toEmber: ->
           Ember.View.extend(
             template: ->
               "#{value}: #{object[value]}"

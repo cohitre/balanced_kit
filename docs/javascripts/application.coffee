@@ -16,7 +16,7 @@ class ExampleLoader
       }
 
     Ember.RSVP.all(promises).then (files) =>
-      files.map (file, i) =>
+      Ember.A(files).map (file, i) =>
         name: @fileNames[i]
         contents: file
 
@@ -24,12 +24,14 @@ class ExampleLoader
     this
       .loadFiles()
       .then (files) =>
+        files = Ember.A(files)
         viewer = $("<div class='example-viewer'></div>")
           .appendTo($("<div class='col-md-6'></div>").appendTo(destinationElement))
           .get(0)
         output = $('<div class="example-output"></div>')
           .appendTo($("<div class='col-md-6'></div>").appendTo(destinationElement))
           .get(0)
+
         @appendViewer(viewer, files)
         @appendOutput(output, files)
 
@@ -53,13 +55,13 @@ class ExampleLoader
     App.TabItemController = Ember.ObjectController.extend
       needs: 'application',
 
-      isSelected: (->
+      isSelected: Ember.computed(->
         @get('model') == @get('controllers.application.selectedTab')
       ).property('controllers.application.selectedTab')
 
   appendOutput: (element, files) ->
     templates = {}
-    scripts = []
+    scripts = Ember.A()
 
     App = Ember.Application.create
       rootElement: element

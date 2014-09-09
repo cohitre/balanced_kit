@@ -1,32 +1,51 @@
-TYPE_MAPPINGS =
-  string: _.isString
-  function: _.isFunction
-  object: _.isObject
-  array: _.isArray
-  blank: (value) ->
-    _.isUndefined(value) || _.isNull(value)
-  number: _.isNumber
-  date: _.isDate
+accessor = (object, hash, args) ->
+  name = args[0]
+  value = args[1]
+
+  if args.length == 0
+    return hash
+  else if args.length == 1 && _.isString(name)
+    return hash[name]
+  else if args.length == 1 && _.isObject(name)
+    _.extend hash, name
+  else if args.length == 2
+    hash[name] = value
+  return object
 
 class BaseViewBuilder
-  @isDefinition: (args, types...) ->
-    (args.length == types.length) && _.every(args, (value, index) =>
-      @isType(types[index], value)
-    )
+  constructor: ->
+    @properties = {}
+    @attributes = {}
+    @templateName = null
 
-  @isType: (type, value) ->
-    testMethod = TYPE_MAPPINGS[type]
-    testMethod && testMethod(value)
+  template: (value) ->
+    if arguments.length == 1
+      @templateName = value
+      return @
+    else
+      return @templateName
 
-  getViewAttributes: ->
-    @viewAttributes
+  text: (text) ->
+    @properties.text = text
+    @
+
+  prop: ->
+    accessor(@, @properties, arguments)
+
+  attr: ->
+    accessor(@, @attributes, arguments)
+
+  addClass: (classStrings) ->
+    str = @prop("classNames") || ""
+    @prop "classNames", $.trim("#{str} #{classStrings}")
+    @
 
   getViewTemplateLookupKey: ->
-    "view:balanced_kit/#{@viewTemplate}"
+    "view:balanced_kit/#{@templateName}"
 
   toEmber: ->
     key = @getViewTemplateLookupKey()
-    attributes = @getViewAttributes()
+    attributes = _.extend({}, @prop(), @attr())
     BalancedKit.lookup(key, attributes)
 
 `export default BaseViewBuilder`

@@ -1,52 +1,51 @@
 TableColumnBuilder = require('balanced/ui/builders/table_column_builder')['default']
 
 describe 'TableColumnBuilder', ->
+  subject = ->
+    new TableColumnBuilder
+
   describe "#build", ->
-    it "defaults to blank values", ->
-      builder = TableColumnBuilder.build()
-      expect(builder.headerBuilder.viewTemplate).toEqual "blank"
-      expect(builder.headerBuilder.viewAttributes).toEqual({})
-
-      expect(builder.cellBuilder.viewTemplate).toEqual "blank"
-      expect(builder.cellBuilder.viewAttributes()).toEqual(undefined)
-
     it "should accept a callback function", ->
       callback = jasmine.createSpy()
       builder = TableColumnBuilder.build(callback)
       expect(callback).toHaveBeenCalledWith(builder)
 
-    it "initializes the header and cell to strings", ->
-      builder = TableColumnBuilder.build("Name", "Stella")
-      expect(builder.headerBuilder.viewTemplate).toEqual "text"
-      expect(builder.headerBuilder.viewAttributes).toEqual(
-        text: "Name"
-      )
-
-      expect(builder.cellBuilder.viewTemplate).toEqual "text"
-      expect(builder.cellBuilder.viewAttributes()).toEqual(
-        text: "Stella"
-      )
-
   describe "#header", ->
-    it "returns a header builder", ->
-      builder = TableColumnBuilder.build()
-      builder.header("text",
-        text: "Header"
-      )
-      result = builder.headerBuilder
-      expect(result.viewTemplate).toEqual "text"
-      expect(result.viewAttributes).toEqual {
-        text: "Header"
-      }
+    it "sets the buildHeaderCallback", ->
+      method = ->
+      builder = subject()
+      builder.header method
+      expect(builder.buildHeaderCallback).toBe method
 
   describe "#cell", ->
-    it "returns a cell builder", ->
-      builder = TableColumnBuilder.build()
-      builder.cell("static",
-        text: "Oh! Static"
-      )
-      result = builder.cellBuilder
-      expect(result.viewTemplate).toEqual "static"
-      expect(result.viewAttributes()).toEqual {
-        text: "Oh! Static"
-      }
+    it "sets the buildCellCallback", ->
+      method = ->
+      builder = subject()
+      builder.cell method
+      expect(builder.buildCellCallback).toBe method
+
+  describe "#getHeaderBuilder", ->
+    it "executes the callback", ->
+      builder = subject()
+      builder.buildHeaderCallback = jasmine.createSpy()
+      header = builder.getHeaderBuilder()
+      expect(builder.buildHeaderCallback).toHaveBeenCalledWith(header)
+
+    it "creates a TableHeaderBuilder and executes the callback", ->
+      builder = subject()
+      builder.buildHeaderCallback = jasmine.createSpy()
+      header = builder.getHeaderBuilder(1)
+      expect(builder.buildHeaderCallback).toHaveBeenCalledWith(header, 1)
+
+  describe "#getCellBuilder", ->
+    it "executes the callback", ->
+      builder = subject()
+      builder.buildCellCallback = jasmine.createSpy()
+      cell = builder.getCellBuilder()
+      expect(builder.buildCellCallback).toHaveBeenCalledWith(cell)
+
+    it "creates a TableCellBuilder and executes the callback", ->
+      builder = subject()
+      builder.buildCellCallback = jasmine.createSpy()
+      cell = builder.getCellBuilder(1)
+      expect(builder.buildCellCallback).toHaveBeenCalledWith(cell, 1)

@@ -25,6 +25,7 @@ var registerView = function(name) {
 registerView("description_list");
 registerView("table");
 registerView("text");
+registerView("button_link");
 registerView("table_cells/text_header_cell");
 registerView("table_cells/empty_header_cell");
 registerView("table_cells/heavy_light_cell");
