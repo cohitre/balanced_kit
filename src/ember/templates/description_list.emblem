@@ -1,0 +1,3 @@
+each pair in view.dataPairs
+  %dt= pair.label
+  %dd= pair.value

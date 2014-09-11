@@ -1,0 +1,5 @@
+if view.isBlank
+  if view.placeholderText
+    span.text-placeholder= view.placeholderText
+else
+  span= view.text

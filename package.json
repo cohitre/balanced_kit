@@ -9,6 +9,7 @@
     "broccoli": "^0.10.0",
     "broccoli-bower": "~0.2.1",
     "broccoli-coffee": "~0.1.0",
+    "broccoli-emblem-compiler": "^0.3.18",
     "broccoli-es6-concatenator": "~0.1.7",
     "broccoli-merge-trees": "~0.1.4",
     "broccoli-static-compiler": "~0.1.4",

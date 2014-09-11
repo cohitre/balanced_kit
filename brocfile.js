@@ -5,6 +5,8 @@ var mergeTrees = require('broccoli-merge-trees');
 var wrapFiles = require('broccoli-wrap');
 var findBowerTrees = require('broccoli-bower');
 var filterTemplates = require('broccoli-template');
+var filterEmblemTemplates = require('broccoli-emblem-compiler');
+
 
 var handleJs = function(treeName, options) {
   var tree = staticCompiler(treeName, options);
@@ -20,6 +22,10 @@ var pickFiles = function(treeName, options) {
     extensions: ['hbs', 'handlebars'],
     compileFunction: 'Ember.Handlebars.compile'
   });
+  tree = filterEmblemTemplates(tree, {
+    extensions: ['emblem'],
+    compileFunction: 'Ember.Handlebars.compile'
+  })
   return tree;
 };
 

@@ -43,9 +43,12 @@ class BaseViewBuilder
   getViewTemplateLookupKey: ->
     "view:balanced_kit/#{@templateName}"
 
-  toEmber: ->
+  toEmberClass: ->
     key = @getViewTemplateLookupKey()
     attributes = _.extend({}, @prop(), @attr())
-    BalancedKit.lookup(key, attributes)
+    BalancedKit.container.lookupFactory(key).extend(attributes)
+
+  toEmber: (obj) ->
+    @toEmberClass.create(obj)
 
 `export default BaseViewBuilder`

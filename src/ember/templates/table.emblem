@@ -1,0 +1,10 @@
+thead
+  each row in view.theadRowViews
+    = view row content=view.content
+tfoot
+  each row in view.tfootRowViews
+    = view row content=view.content
+tbody
+  each item in view.content
+    each row in view.tbodyRowViews
+      = view row content=view.content model=item

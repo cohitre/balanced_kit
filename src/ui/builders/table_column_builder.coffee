@@ -1,6 +1,4 @@
 BaseViewBuilder = require("balanced/lib/base_view_builder").default
-TableCellBuilder = require("balanced/ui/builders/table_cell_builder").default
-TableHeaderBuilder = require("balanced/ui/builders/table_header_builder").default
 
 class TableColumnBuilder
   @build: (callback) ->

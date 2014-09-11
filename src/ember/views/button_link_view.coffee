@@ -1,7 +1,6 @@
-TextView = require("balanced/ember/views/text_view").default
-
-ButtonLinkView = TextView.extend
+ButtonLinkView = Ember.View.extend
   tagName: "a"
-  classNames: [":btn"]
+  classNames: ["btn"]
+  template: Ember.Handlebars.compile("{{view.text}}")
 
 `export default ButtonLinkView`

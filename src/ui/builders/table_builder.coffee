@@ -1,7 +1,11 @@
 BaseViewBuilder = require("balanced/lib/base_view_builder").default
 TableView = require("balanced/ember/views/table_view").default
-TableColumnBuilder = require("balanced/ui/builders/table_column_builder").default
-TableFooterBuilder = require("balanced/ui/builders/table_footer_builder").default
+TableRowBuilder = require("balanced/ui/builders/table_row_builder").default
+
+rowsToEmberClasses = (rows) ->
+  array = for row in rows
+    row.toEmberClass()
+  Ember.A array
 
 class TableBuilder extends BaseViewBuilder
   @build: (callback) ->
@@ -10,29 +14,49 @@ class TableBuilder extends BaseViewBuilder
       callback(builder)
     builder
 
-  columnBuilder: TableColumnBuilder
-  emberTableView: TableView
-
   constructor: ->
-    @columns = []
+    super()
+    @theadRowBuilders = []
+    @tfootRowBuilders = []
+    @tbodyRowBuilders = []
 
-  column: (args...) ->
-    column = @columnBuilder.build(args...)
-    @columns.push column
-    column
+    @head =
+      row: (callback) =>
+        @theadRowBuilders.push TableRowBuilder.build(callback)
+        @
 
-  footer: (callback) ->
-    @footerCallback = callback
+    @foot =
+      row: (callback) =>
+        @tfootRowBuilders.push TableRowBuilder.build(callback)
+        @
+      button: (text, clickAction) =>
+        builder = TableRowBuilder.build (rowBuilder) =>
+          rowBuilder.cell (row) =>
+            Ember.ContainerView.create(
+              tagName: "td"
+              attributeBindings: ["colspan"]
+              colspan: @theadRowBuilders[0].cellCallbacks.length
+              childViews: [
+                BalancedKit.lookup("view:balanced_kit/button_link",
+                  content: row.get("content")
+                  text: text
+                  click: clickAction
+                )
+              ]
+            )
+        @tfootRowBuilders.push builder
+        @
 
-  getFooterBuilder: ->
-    builder = new TableFooterBuilder
-    @footerCallback(builder)
-    builder
 
-  toEmber: ->
-    @emberTableView.extend(
-      columnBuilders: Ember.A(@columns)
-      footerContentBuilder: @getFooterBuilder()
-    )
+    @body =
+      row: (callback) =>
+        @tbodyRowBuilders.push TableRowBuilder.build(callback)
+        @
+
+  toEmberClass: ->
+    TableView.extend
+      tbodyRowViews: rowsToEmberClasses(@tbodyRowBuilders)
+      tfootRowViews: rowsToEmberClasses(@tfootRowBuilders)
+      theadRowViews: rowsToEmberClasses(@theadRowBuilders)
 
 `export default TableBuilder`

@@ -29,6 +29,7 @@ registerView("button_link");
 registerView("table_cells/text_header_cell");
 registerView("table_cells/empty_header_cell");
 registerView("table_cells/heavy_light_cell");
+registerView("table_cells/button_cell");
 registerView("table_cells/text_cell");
 registerView("table_cells/date_cell");
 registerView("table_cells/empty_cell");

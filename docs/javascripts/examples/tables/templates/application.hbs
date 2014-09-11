@@ -1,8 +1,8 @@
-<h4>Customers table</h4>
+<h4>List of wrestlers</h4>
 
 <form {{action "createCustomer" name email on="submit"}}>
   {{input value=name placeholder="Name"}}<br>
   <button type="submit">Submit</button>
 </form>
 
-{{view customersTable content=customers classNames="table table-bordered"}}
+{{view tableView content=wrestlers classNames="table-bordered"}}
