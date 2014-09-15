@@ -17,8 +17,15 @@ jasmine.container =
   $: (args...) ->
     @get().find(args...)
 
+  find: (args...) ->
+    @$(args...)
+
   text: (selector) ->
     if arguments.length == 1
       $.trim @$(selector).text()
     else
       $.trim @get().text()
+
+  append: (view) ->
+    Ember.run =>
+      view.appendTo @get()

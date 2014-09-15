@@ -1,8 +1,7 @@
-<h4>List of wrestlers</h4>
-
-<form {{action "createCustomer" name email on="submit"}}>
-  {{input value=name placeholder="Name"}}<br>
-  <button type="submit">Submit</button>
+<h3>Contacts</h3>
+<form {{action "createContact" name email on="submit"}} class="form-inline">
+  {{input value=name placeholder="Name" classNames="form-control"}}
+  <button type="submit" class="btn btn-default">Submit</button>
 </form>
-
-{{view tableView content=wrestlers classNames="table-bordered"}}
+<hr>
+{{view tableView content=contacts classNames="table-bordered"}}

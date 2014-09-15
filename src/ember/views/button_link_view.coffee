@@ -1,6 +1,9 @@
-ButtonLinkView = Ember.View.extend
+Template = require("balanced/ember/templates/button_link").default
+
+ButtonLinkView = Ember.View.extend(
   tagName: "a"
   classNames: ["btn"]
-  template: Ember.Handlebars.compile("{{view.text}}")
+  template: Template
+)
 
 `export default ButtonLinkView`

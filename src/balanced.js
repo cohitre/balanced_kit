@@ -23,15 +23,18 @@ var registerView = function(name) {
 };
 
 registerView("description_list");
-registerView("table");
 registerView("text");
 registerView("button_link");
-registerView("table_cells/text_header_cell");
-registerView("table_cells/empty_header_cell");
-registerView("table_cells/heavy_light_cell");
 registerView("table_cells/button_cell");
-registerView("table_cells/text_cell");
 registerView("table_cells/date_cell");
+registerView("table_cells/delete_row_cell");
 registerView("table_cells/empty_cell");
+registerView("table_cells/empty_header_cell");
+registerView("table_cells/filter_header_cell");
+registerView("table_cells/heavy_light_cell");
+registerView("table_cells/text_cell");
+registerView("table_cells/text_header_cell");
+registerView("tables/api_results_table")
+registerView("tables/simple_table")
 
 export default BalancedKit;

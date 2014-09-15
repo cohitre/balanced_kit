@@ -1,0 +1,24 @@
+thead
+  tr
+    each viewClass in view.headerRowCellClasses
+      = view viewClass
+tfoot
+  tr
+    td.cell-message.text-center colspan=view.columnsCount
+      if view.isLoading
+        | Loading
+      else
+        if view.hasNext
+          a.btn click="loadMore" Load more
+tbody
+  each item in view.content
+    tr
+      each viewClass in view.bodyRowCellClasses
+        = view viewClass model=item
+  else
+    tr
+      td.cell-message colspan=view.columnsCount
+        if view.isLoading
+          | Loading...
+        else
+          | No results

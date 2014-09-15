@@ -1,11 +1,12 @@
-Template = require("balanced/ember/templates/table_cells/heavy_light_cell").default
+Template = require("balanced/ember/templates/table_cells/date_cell").default
 
 DateCellView = Ember.View.extend
   template: Template
   tagName: "td"
-  primaryText: Ember.computed "date", ->
+  classNames: ["cell-line-2"]
+  dateString: Ember.computed "date", ->
     moment(@get("date")).format("MMM D, YYYY")
-  secondaryText: Ember.computed "date", ->
+  timeString: Ember.computed "date", ->
     moment(@get("date")).format("h:mm a")
 
 `export default DateCellView`

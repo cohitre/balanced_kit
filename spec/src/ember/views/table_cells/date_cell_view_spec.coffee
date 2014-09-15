@@ -8,20 +8,20 @@ describe "DateCellView", ->
   afterEach ->
     jasmine.container.clean()
 
-  describe "#primaryText", ->
+  describe "#dateString", ->
     it "should have the correct format", ->
       view = new DateCellView
       Ember.run ->
         view.set "date", new Date(SAMPLE_DATE_STRING)
-      expect(view.get("primaryText")).toEqual "Dec 25, 1995"
+      expect(view.get("dateString")).toEqual "Dec 25, 1995"
 
-  describe "#secondaryText", ->
+  describe "#timeString", ->
     it "should have the correct format", ->
       view = new DateCellView
       Ember.run ->
         view.set "date", new Date(SAMPLE_DATE_STRING)
 
-      expect(view.get("secondaryText")).toMatch /\d?\d:33 (a|p)m/
+      expect(view.get("timeString")).toMatch /\d?\d:33 (a|p)m/
 
   describe "#render", ->
     it "should have the correct markup", ->
@@ -33,5 +33,5 @@ describe "DateCellView", ->
         view.set "date", new Date(SAMPLE_DATE_STRING)
         view.appendTo(container.get())
 
-      expect(container.text(".text-heavy")).toEqual "Dec 25, 1995"
-      expect(container.text(".text-light")).toMatch /\d?\d:33 (a|p)m/
+      expect(container.text()).toMatch /Dec 25, 1995\d?\d:33 (a|p)m/
+      expect(container.text(".text-understate")).toMatch /\d?\d:33 (a|p)m/

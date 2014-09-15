@@ -1,0 +1,9 @@
+a class={:dropdown-toggle view.isSelected:active} data-toggle="dropdown"
+  = view.text
+  b.caret
+
+ul.dropdown-menu.type-filter.filter-choices
+  each filterLink in view.filters
+    li
+      a class={filterLink.isSelected:active} click="setFilter view.filterName filterLink.value"
+        = filterLink.text

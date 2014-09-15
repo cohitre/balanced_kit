@@ -1,4 +1,4 @@
-TextView = require('balanced/ember/views/text_view')['default']
+TextView = require('balanced/ember/views/text_view').default
 
 describe 'TextView', ->
   beforeEach ->

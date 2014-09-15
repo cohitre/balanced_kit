@@ -1,0 +1,4 @@
+time datetime="view.date" title="view.date"
+  = view.dateString
+  br
+  span.text-understate= view.timeString
