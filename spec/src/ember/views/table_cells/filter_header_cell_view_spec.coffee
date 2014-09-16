@@ -14,23 +14,22 @@ describe 'FilterHeaderCellView', ->
         isSelected: true
       )
       jasmine.container.append view
-      expect(jasmine.container.$("a.dropdown-toggle.active").length).toEqual 1
+      expect(jasmine.container.$("a.dropdown-toggle").length).toEqual 1
       expect(jasmine.container.text("a.dropdown-toggle")).toEqual "Extreme link"
 
     it "should render the filters", ->
       view = FilterHeaderCellView.create(
         text: "Extreme link"
         filterName: "status"
-        filters: Ember.A([{
+        filterValue: "failed"
+        filterDefinitions: Ember.A([{
           text: "Pending"
-          isSelected: false
           value: "pending"
         }, {
           text: "Failed"
-          isSelected: true
           value: "failed"
         }])
       )
       jasmine.container.append view
       expect(jasmine.container.$(".dropdown-menu li").length).toEqual 2
-      expect(jasmine.container.text("a.active")).toEqual "Failed"
+      expect(jasmine.container.text("li.active a")).toEqual "Failed"

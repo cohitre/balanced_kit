@@ -1,7 +1,7 @@
 thead
   tr
     each viewClass in view.headerRowCellClasses
-      = view viewClass
+      = view viewClass collection=model
 tfoot
   tr
     td.cell-message.text-center colspan=view.columnsCount
@@ -9,12 +9,12 @@ tfoot
         | Loading
       else
         if view.hasNext
-          a.btn click="loadMore" Load more
+          a.btn click="loadMore model" Load more
 tbody
   each item in view.content
     tr
       each viewClass in view.bodyRowCellClasses
-        = view viewClass model=item
+        = view viewClass model=item collection=view.content
   else
     tr
       td.cell-message colspan=view.columnsCount

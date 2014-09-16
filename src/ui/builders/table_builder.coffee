@@ -34,8 +34,9 @@ class TableBuilder
     klass.extend(extensions)
 
   pushCell: (array, klass, extensions, nameSuffix="") ->
-    array.pushObject @buildCell(klass, extensions, nameSuffix)
-    @
+    cell = @buildCell(klass, extensions, nameSuffix)
+    array.pushObject cell
+    cell
 
   toEmberClass: ->
     TableView = getView("tables/#{@tableName}_table")

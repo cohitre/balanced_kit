@@ -6,9 +6,9 @@ ApiResultsTableView = Ember.View.extend(
   template: TEMPLATE
   columnsCount: Ember.computed.oneWay("bodyRowCellClasses.length")
 
-  isLoading: Ember.computed.oneWay("model.isLoading")
   content: Ember.computed.oneWay("model.results")
   hasNext: Ember.computed.oneWay("model.hasNext")
+  isLoading: Ember.computed.oneWay("model.isLoading")
 )
 
 `export default ApiResultsTableView`

@@ -1,2 +1,2 @@
-a click="del target='view'"
+a click="openDeleteModal view.modalClass view.model view.collection"
   i.icon-table-x
