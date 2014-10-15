@@ -1,0 +1,16 @@
+<thead>
+  <tr>
+    {{#each viewClass in view.headerRowCellClasses}}
+      {{view viewClass}}
+    {{/each}}
+  </tr>
+</thead>
+<tbody>
+  {{#each item in view.content}}
+    <tr>
+      {{#each viewClass in view.bodyRowCellClasses}}
+        {{view viewClass model=item}}
+      {{/each}}
+    </tr>
+  {{/each}}
+</tbody>

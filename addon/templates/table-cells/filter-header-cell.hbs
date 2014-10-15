@@ -1,0 +1,15 @@
+<a class="dropdown">
+  <a class="dropdown-toggle" data-toggle="dropdown">
+    {{view.text}}
+    <b class="caret"></b>
+  </a>
+  <ul class="dropdown-menu">
+    {{#each filter in view.filters}}
+      <li {{bind-attr class="filter.isSelected:active"}}>
+        <a {{action "setFilter" view.collection view.filterName filter.value}}>
+          {{filter.text}}
+        </a>
+      </li>
+    {{/each}}
+  </ul>
+</a>

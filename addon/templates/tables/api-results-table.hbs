@@ -1,0 +1,36 @@
+<thead>
+  <tr>
+    {{#each viewClass in view.headerRowCellClasses}}
+      {{view viewClass collection=model}}
+    {{/each}}
+  </tr>
+</thead>
+<tfoot>
+  <tr>
+    <td class="cell-message text-center" {{bind-attr colspan=view.columnsCount}}>
+      {{#if view.isLoading}}
+        Loading
+      {{else}} {{#if view.hasNext}}
+        <a class="btn" {{action "loadMore" model}}>Load more</a>
+      {{/if}} {{/if}}
+    </td>
+  </tr>
+</tfoot>
+<tbody>
+  {{#each item in view.content}}
+    <tr>
+      {{#each viewClass in view.bodyRowCellClasses}}
+        {{view viewClass model=item collection=view.content}}
+      {{/each}}
+    </tr>
+  {{else}}
+    <tr>
+      <td class="cell-message" {{bind-attr colspan=view.columnsCount}}>
+        {{#if view.isLoading}}
+          Loading...
+        {{else}}
+          No results
+        {{/if}}
+      </td>
+  {{/each}}
+</tbody>
